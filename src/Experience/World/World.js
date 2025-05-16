@@ -1,6 +1,7 @@
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
 import Keyboard from './Keyboard.js'
+import Keycaps from './Keycaps.js'
 
 export default class World
 {
@@ -15,6 +16,7 @@ export default class World
         {
             // Setup
             this.Keyboard = new Keyboard()
+            this.Keycap = new Keycaps
         })
     }
 

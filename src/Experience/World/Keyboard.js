@@ -35,14 +35,6 @@ export default class Keyboard
         this.model.rotation.y = -Math.PI / 2
         this.model.position.y = 0.7
         this.scene.add(this.model)
-
-        this.model.traverse((child) =>
-        {
-            if(child instanceof THREE.Mesh)
-            {
-                child.castShadow = true
-            }
-        })
     }
 
     setGeometry()

@@ -13,5 +13,10 @@ export default [
         name: 'keyboardBaseModel',
         type: 'gltfModel',
         path: 'models/keyboardBase.glb'
+    },
+    {
+        name: 'keycapsModel',
+        type: 'gltfModel',
+        path: 'models/keycaps.glb'
     }
 ]
