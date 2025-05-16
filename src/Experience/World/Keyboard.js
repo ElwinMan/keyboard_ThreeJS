@@ -22,10 +22,10 @@ export default class Keyboard
 
         this.setModel()
 
-        this.setGeometry()
-        this.setTextures()
-        this.setMaterial()
-        this.setMesh()
+        // this.setGeometry()
+        // this.setTextures()
+        // this.setMaterial()
+        // this.setMesh()
     }
 
     setModel()
@@ -37,56 +37,56 @@ export default class Keyboard
         this.scene.add(this.model)
     }
 
-    setGeometry()
-    {
-         this.geometry = new THREE.PlaneGeometry(42.75, 14.6)
-    }
+    // setGeometry()
+    // {
+    //      this.geometry = new THREE.PlaneGeometry(42.75, 14.6)
+    // }
 
-    setTextures()
-    {
-        this.textures = {}
+    // setTextures()
+    // {
+    //     this.textures = {}
 
-        this.textures.color = this.resources.items.keyboardShadowTexture
-        this.textures.color.colorSpace = THREE.SRGBColorSpace
-        // this.textures.color.wrapS = THREE.RepeatWrapping
-        // this.textures.color.wrapT = THREE.RepeatWrapping
-        this.textures.color.needsUpdate = true
+    //     this.textures.color = this.resources.items.keyboardShadowTexture
+    //     this.textures.color.colorSpace = THREE.SRGBColorSpace
+    //     // this.textures.color.wrapS = THREE.RepeatWrapping
+    //     // this.textures.color.wrapT = THREE.RepeatWrapping
+    //     this.textures.color.needsUpdate = true
 
-        this.textures.alpha = this.resources.items.keyboardShadowAlphaTexture
-        this.textures.alpha.colorSpace = THREE.SRGBColorSpace
-        // this.textures.alpha.wrapS = THREE.RepeatWrapping
-        // this.textures.alpha.wrapT = THREE.RepeatWrapping
-        this.textures.alpha.needsUpdate = true
-    }
+    //     this.textures.alpha = this.resources.items.keyboardShadowAlphaTexture
+    //     this.textures.alpha.colorSpace = THREE.SRGBColorSpace
+    //     // this.textures.alpha.wrapS = THREE.RepeatWrapping
+    //     // this.textures.alpha.wrapT = THREE.RepeatWrapping
+    //     this.textures.alpha.needsUpdate = true
+    // }
 
-    setMaterial()
-    {
-        this.material = new THREE.MeshStandardMaterial({ 
-        transparent: true,
-        opacity: 0.8,
-        })
-    }
+    // setMaterial()
+    // {
+    //     this.material = new THREE.MeshStandardMaterial({ 
+    //     transparent: true,
+    //     opacity: 0.8,
+    //     })
+    // }
 
-    setMesh()
-    {
-        this.mesh = new THREE.Mesh(this.geometry, this.material)
-        this.mesh.rotation.x = -Math.PI / 2
-        this.mesh.position.set(0, 0.01, 0)
+    // setMesh()
+    // {
+    //     this.mesh = new THREE.Mesh(this.geometry, this.material)
+    //     this.mesh.rotation.x = -Math.PI / 2
+    //     this.mesh.position.set(0, 0.01, 0)
 
-        // Add to Scene
-        this.scene.add(this.mesh)
+    //     // Add to Scene
+    //     this.scene.add(this.mesh)
 
-        // Debug
-        if (this.debug.active)
-        {
-            this.debugFolder.add(this.mesh.position, 'x').min(-20).max(20).step(0.1).name('Plane X')
-            this.debugFolder.add(this.mesh.position, 'y').min(-20).max(20).step(0.1).name('Plane Y')
-            this.debugFolder.add(this.mesh.position, 'z').min(-20).max(20).step(0.1).name('Plane Z')
-        }
-    }
+    //     // Debug
+    //     if (this.debug.active)
+    //     {
+    //         this.debugFolder.add(this.mesh.position, 'x').min(-20).max(20).step(0.1).name('Plane X')
+    //         this.debugFolder.add(this.mesh.position, 'y').min(-20).max(20).step(0.1).name('Plane Y')
+    //         this.debugFolder.add(this.mesh.position, 'z').min(-20).max(20).step(0.1).name('Plane Z')
+    //     }
+    // }
     
-    update()
-    {
+    // update()
+    // {
         
-    }
+    // }
 }
