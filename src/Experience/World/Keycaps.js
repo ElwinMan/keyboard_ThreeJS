@@ -10,11 +10,18 @@ export default class Keycaps {
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.time = this.experience.time
+        this.debug = this.experience.debug
 
         // State
         this.keycaps = new Map() // Map of keyName -> Keycap Mesh
         this.isPressed = {}
         this.resource = this.resources.items.keycapsModel
+
+        // Debug
+        if (this.debug?.active) {
+            this.debugFolder = this.debug.ui.addFolder('keycaps');
+            this.setupDebug()
+        }
 
         // Load models
         this.setModel()
@@ -39,7 +46,6 @@ export default class Keycaps {
         this.model = this.resource.scene
         this.model.scale.set(1, 1, 1)
         this.model.rotation.y = -Math.PI / 2
-        // this.scene.add(this.model)
 
         // Store base models
         this.baseModels = {
@@ -237,4 +243,25 @@ export default class Keycaps {
         }
         this.textMesh.geometry = textGeometry;
     }
+
+    setupDebug() {
+        this.colorParams = { keycapColor: '#ffffff' };
+        const self = this;
+
+        this.debugFolder
+            .addColor(this.colorParams, 'keycapColor')
+            .name('Keycaps Color')
+            .onChange(function(value) {
+                self.setKeycapColor(value);
+            });
+    }
+
+    setKeycapColor(color) {
+        this.keycaps.forEach(({ mesh }) => {
+            if (mesh.material) {
+                mesh.material.color.set(color);
+            }
+        });
+    }
+
 }
