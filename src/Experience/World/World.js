@@ -9,16 +9,13 @@ export default class World
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
-        this.Keyboard = new Keyboard()
         this.environment = new Environment()
 
-        // Wait for resources
-        // this.resources.on('ready', () =>
-        // {
-        //     // Setup
-        //     this.Keyboard = new Keyboard()
-        //     this.environment = new Environment()
-        // })
+        this.resources.on('ready', () =>
+        {
+            // Setup
+            this.Keyboard = new Keyboard()
+        })
     }
 
     update()

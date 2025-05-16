@@ -17,9 +17,32 @@ export default class Keyboard
             this.debugFolder = this.debug.ui.addFolder('keyboard')
         }
 
+        // Resource
+        this.resource = this.resources.items.keyboardBaseModel
+
+        this.setModel()
+
         this.setGeometry()
+        this.setTextures()
         this.setMaterial()
         this.setMesh()
+    }
+
+    setModel()
+    {
+        this.model = this.resource.scene
+        this.model.scale.set(1, 1, 1)
+        this.model.rotation.y = -Math.PI / 2
+        this.model.position.y = 0.7
+        this.scene.add(this.model)
+
+        this.model.traverse((child) =>
+        {
+            if(child instanceof THREE.Mesh)
+            {
+                child.castShadow = true
+            }
+        })
     }
 
     setGeometry()
@@ -27,17 +50,36 @@ export default class Keyboard
          this.geometry = new THREE.PlaneGeometry(42.75, 14.6)
     }
 
+    setTextures()
+    {
+        this.textures = {}
+
+        this.textures.color = this.resources.items.keyboardShadowTexture
+        this.textures.color.colorSpace = THREE.SRGBColorSpace
+        // this.textures.color.wrapS = THREE.RepeatWrapping
+        // this.textures.color.wrapT = THREE.RepeatWrapping
+        this.textures.color.needsUpdate = true
+
+        this.textures.alpha = this.resources.items.keyboardShadowAlphaTexture
+        this.textures.alpha.colorSpace = THREE.SRGBColorSpace
+        // this.textures.alpha.wrapS = THREE.RepeatWrapping
+        // this.textures.alpha.wrapT = THREE.RepeatWrapping
+        this.textures.alpha.needsUpdate = true
+    }
+
     setMaterial()
     {
-         this.material = new THREE.MeshStandardMaterial({ color: 0xffffff })
+        this.material = new THREE.MeshStandardMaterial({ 
+        transparent: true,
+        opacity: 0.8,
+        })
     }
 
     setMesh()
     {
         this.mesh = new THREE.Mesh(this.geometry, this.material)
         this.mesh.rotation.x = -Math.PI / 2
-        this.mesh.position.set(0, 0, 0)
-        this.mesh.receiveShadow = true
+        this.mesh.position.set(0, 0.01, 0)
 
         // Add to Scene
         this.scene.add(this.mesh)
